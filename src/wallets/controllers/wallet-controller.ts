@@ -1,7 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 import { Observable } from 'rxjs';
-import { WalletService } from './service/wallet-service';
-import { WalletModel } from './models/wallet-model';
+import { WalletService } from '../service/wallet-service';
+import { WalletModel } from '../models/wallet-model';
 
 
 @Controller('dashboard')
