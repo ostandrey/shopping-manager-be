@@ -1,41 +1,57 @@
 import { Injectable } from '@nestjs/common';
-import { WalletModel } from '../models/wallet-model';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Wallet } from '../entity/wallet.entity';
+import { Repository } from 'typeorm';
+import { CreateWalletDto } from '../dto/create-wallet.dto';
 
 @Injectable()
 export class WalletsService {
-  wallets: WalletModel[] = [
-    {id: 0, title: 'My-wallet', type: 'Cash', balance: 12313},
-    {id: 1, title: 'Wallets', type: 'Cash', balance: 54643},
-    {id: 2, title: 'My-wallet', type: 'Cash', balance: 12313}
-  ];
+  // wallets: WalletModel[] = [
+  //   {id: 0, title: 'My-wallet', type: 'Cash', balance: 12313},
+  //   {id: 1, title: 'Wallets', type: 'Cash', balance: 54643},
+  //   {id: 2, title: 'My-wallet', type: 'Cash', balance: 12313}
+  // ];
 
-  create(wallet: WalletModel) {
-    const newWallet: WalletModel = {
-      id: this.wallets[this.wallets.length - 1].id + 1,
-      ...wallet
-    };
+  constructor(
+    @InjectRepository(Wallet)
+    private walletsRepository: Repository<Wallet>
+  ) {}
 
-    this.wallets.push(newWallet);
+   // create(wallet: WalletModel) {
+   //   const newWallet: WalletModel = {
+   //     id: this.wallets[this.wallets.length - 1].id + 1,
+   //     ...wallet
+   //   };
+   //
+   //   this.wallets.push(newWallet);
+   // }
+
+  create(createWalletDto: CreateWalletDto) {
+    return this.walletsRepository.insert(createWalletDto);
   }
 
-  getAll(): WalletModel[] {
-    return this.wallets
+
+  getAll(): Promise<Wallet[]> {
+    return this.walletsRepository.find({relations: ['type']});
+    // return this.wallets;
   }
 
-  getOne(id: string): WalletModel {
-    const idx: number = this.wallets.findIndex(
-      (wallet:WalletModel) => wallet.id === Number(id)
-    );
-    return this.wallets[idx]
+  getOne(id: string): Promise<Wallet> {
+    // const idx: number = this.wallets.findIndex(
+    //   (wallet:WalletModel) => wallet.id === Number(id)
+    // );
+    // return this.wallets[idx]
+    return this.walletsRepository.findOne(id);
   }
 
-  delete(id: string): void {
-    const idx: number = this.wallets.findIndex(
-      (wallet:WalletModel) => wallet.id === Number(id)
-    );
-    this.wallets = [
-      ...this.wallets.slice(0, idx),
-      ...this.wallets.slice(idx + 1)
-    ]
+  async delete(id: string): Promise<void> {
+    // const idx: number = this.wallets.findIndex(
+    //   (wallet:WalletModel) => wallet.id === Number(id)
+    // );
+    // this.wallets = [
+    //   ...this.wallets.slice(0, idx),
+    //   ...this.wallets.slice(idx + 1)
+    // ]
+    await this.walletsRepository.delete(id);
   }
 }
