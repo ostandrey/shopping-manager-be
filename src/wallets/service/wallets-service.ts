@@ -18,7 +18,7 @@ export class WalletsService {
 
 
   getAll(): Promise<Wallet[]> {
-    return this.walletsRepository.find({relations: ['type']});
+    return this.walletsRepository.find({relations: ['type', 'transaction']});
   }
 
   getOne(id: string): Promise<Wallet> {
@@ -29,3 +29,4 @@ export class WalletsService {
     await this.walletsRepository.delete(id);
   }
 }
+

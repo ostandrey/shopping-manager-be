@@ -1,6 +1,8 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { TransactionService } from '../service/transaction-service';
 import { TransactionModel } from '../models/transaction-model';
+import { Transaction } from '../entity/transaction.entity';
+import { CreateTransactionDto } from '../dto/create-transaction.dto';
 
 
 @Controller('transactions')
@@ -9,24 +11,25 @@ export class TransactionController {
   constructor(private transactionService: TransactionService) {}
 
   @Get()
-  getAll(): TransactionModel[] {
+  async getAll(): Promise<Transaction[]> {
     return this.transactionService.getAll()
   }
 
   @Get(':id')
-  getOne(@Param('id') id: string): TransactionModel {
+  async getOne(@Param('id') id: string): Promise<Transaction> {
     return this.transactionService.getOne(id)
   }
 
   @Post()
-  create(@Body() transaction: TransactionModel) {
-    return this.transactionService.create(transaction)
+  async create(@Body() createTransactionDto: CreateTransactionDto) {
+    console.log(createTransactionDto);
+    return this.transactionService.create(createTransactionDto)
   }
 
-  @Put('id')
-  update(@Param('id') id: string, @Body() transaction: TransactionModel) {
-    return this.transactionService.update(id)
-  }
+  // @Put('id')
+  // update(@Param('id') id: string, @Body() createTransactionDto: CreateTransactionDto) {
+  //   return this.transactionService.update(id)
+  // }
 
   @Delete(':id')
   delete(@Param('id') id: string) {

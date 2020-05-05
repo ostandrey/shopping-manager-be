@@ -5,6 +5,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 import { Wallet } from './wallets/entity/wallet.entity';
 import { Type } from './wallets/entity/type.entity';
+import { Transaction } from './transaction/entity/transaction.entity';
+import { Category } from './transaction/entity/category.entity';
 
 @Module({
   imports: [
@@ -17,7 +19,7 @@ import { Type } from './wallets/entity/type.entity';
       username: 'postgres',
       password: '123',
       database: 'moneymanager',
-      entities: [Wallet, Type],
+      entities: [Wallet, Type, Transaction, Category],
       synchronize: true,
     }),
   ],

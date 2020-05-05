@@ -1,4 +1,4 @@
-import { IsInt, IsString } from 'class-validator';
+import { IsInt, IsNumber, IsString } from 'class-validator';
 
 export class CreateWalletDto {
   @IsString()
@@ -6,4 +6,8 @@ export class CreateWalletDto {
 
   @IsInt()
   readonly typeId: number;
+
+  @IsNumber()
+  readonly balance: number;
+
 }
