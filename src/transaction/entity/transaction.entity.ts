@@ -17,7 +17,7 @@ export class Transaction {
   date: number;
 
   @ManyToOne(type => Category, category => category.transaction)
-  @JoinColumn({name: "category_id", referencedColumnName: "id"})
+  @JoinColumn({name: "category_id"})
   category: Category[];
 
   @OneToMany(type => Wallet, wallet => wallet.transaction)

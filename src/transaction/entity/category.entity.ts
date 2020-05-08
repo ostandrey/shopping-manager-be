@@ -1,5 +1,16 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  JoinTable,
+  ManyToOne,
+  OneToMany,
+  PrimaryColumn,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { Transaction } from './transaction.entity';
+import { CategoryName } from './category_name.entity';
+import { TypeCategory } from './type_category.entity';
 
 @Entity()
 export class Category {
@@ -7,8 +18,20 @@ export class Category {
   id: number;
 
   @Column()
-  name_category: string;
+  categoryNameId: number;
+
+
+  @ManyToOne(type => CategoryName, categoryName => categoryName.category)
+  @JoinColumn()
+  categoryName: CategoryName[];
+
+  @Column()
+  type_id: number;
+
+  @ManyToOne(type => TypeCategory, typeCategory => typeCategory.category)
+  @JoinColumn({name: "type_id"})
+  typeCategory: TypeCategory[];
 
   @OneToMany(type => Transaction, transaction => transaction.category)
-  transaction: Transaction;
+  transaction: Transaction[];
 }

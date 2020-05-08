@@ -7,6 +7,8 @@ import { Wallet } from './wallets/entity/wallet.entity';
 import { Type } from './wallets/entity/type.entity';
 import { Transaction } from './transaction/entity/transaction.entity';
 import { Category } from './transaction/entity/category.entity';
+import { CategoryName } from './transaction/entity/category_name.entity';
+import { TypeCategory } from './transaction/entity/type_category.entity';
 
 @Module({
   imports: [
@@ -19,7 +21,7 @@ import { Category } from './transaction/entity/category.entity';
       username: 'postgres',
       password: '123',
       database: 'moneymanager',
-      entities: [Wallet, Type, Transaction, Category],
+      entities: [Wallet, Type, Transaction, Category, CategoryName, TypeCategory],
       synchronize: true,
     }),
   ],
