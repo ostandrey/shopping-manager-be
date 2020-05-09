@@ -1,6 +1,5 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post} from '@nestjs/common';
 import { TransactionService } from '../service/transaction-service';
-import { TransactionModel } from '../models/transaction-model';
 import { Transaction } from '../entity/transaction.entity';
 import { CreateTransactionDto } from '../dto/create-transaction.dto';
 
