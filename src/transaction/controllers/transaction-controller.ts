@@ -26,11 +26,6 @@ export class TransactionController {
     return this.transactionService.create(createTransactionDto)
   }
 
-  // @Put('id')
-  // update(@Param('id') id: string, @Body() createTransactionDto: CreateTransactionDto) {
-  //   return this.transactionService.update(id)
-  // }
-
   @Delete(':id')
   delete(@Param('id') id: string) {
     return this.transactionService.delete(id)

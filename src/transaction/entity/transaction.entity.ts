@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne, JoinColumn } from 'typeorm';
 import { Wallet } from '../../wallets/entity/wallet.entity';
-import { Category } from './category.entity';
+import { TransactionCategory } from './transaction-category.entity';
 
 @Entity()
 export class Transaction {
@@ -16,10 +16,11 @@ export class Transaction {
   @Column('date')
   date: number;
 
-  @ManyToOne(type => Category, category => category.transaction)
-  @JoinColumn({name: "category_id"})
-  category: Category[];
+  @ManyToOne(
+    type => TransactionCategory,
+      category => category.transaction, {cascade: ['insert', 'update']})
+  category: TransactionCategory;
 
-  @OneToMany(type => Wallet, wallet => wallet.transaction)
+  @ManyToOne(type => Wallet, wallet => wallet.transaction)
   wallet: Wallet;
 }

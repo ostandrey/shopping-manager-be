@@ -18,11 +18,29 @@ export class WalletsService {
 
 
   getAll(): Promise<Wallet[]> {
-    return this.walletsRepository.find({relations: ['type', 'transaction']});
+    return this.walletsRepository.find({
+      join: {
+        alias: "wallet",
+        leftJoinAndSelect: {
+          "transaction": "wallet.transaction",
+          "category": "transaction.category"
+        }
+      },
+      relations: ['type', 'transaction']});
   }
 
   getOne(id: string): Promise<Wallet> {
-    return this.walletsRepository.findOne(id);
+    return this.walletsRepository.findOne(id, {
+      where: {id: id},
+      join: {
+        alias: "wallet",
+        leftJoinAndSelect: {
+          "transaction": "wallet.transaction",
+          "category": "transaction.category"
+        }
+      },
+      relations: ['type', 'transaction']
+    });
   }
 
   async delete(id: string): Promise<void> {

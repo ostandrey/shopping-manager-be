@@ -4,11 +4,11 @@ import { TransactionModule } from './transaction/transaction-module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 import { Wallet } from './wallets/entity/wallet.entity';
-import { Type } from './wallets/entity/type.entity';
+import { WalletType } from './wallets/entity/wallet-type.entity';
 import { Transaction } from './transaction/entity/transaction.entity';
-import { Category } from './transaction/entity/category.entity';
-import { CategoryName } from './transaction/entity/category_name.entity';
-import { TypeCategory } from './transaction/entity/type_category.entity';
+import { TransactionCategory } from './transaction/entity/transaction-category.entity';
+import { TransactionCategoryType } from './transaction/entity/transaction-type.entity';
+
 
 @Module({
   imports: [
@@ -21,7 +21,13 @@ import { TypeCategory } from './transaction/entity/type_category.entity';
       username: 'postgres',
       password: '123',
       database: 'moneymanager',
-      entities: [Wallet, Type, Transaction, Category, CategoryName, TypeCategory],
+      entities: [
+        Wallet,
+        WalletType,
+        Transaction,
+        TransactionCategory,
+        TransactionCategoryType
+      ],
       synchronize: true,
     }),
   ],

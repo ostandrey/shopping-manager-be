@@ -11,5 +11,9 @@ export class CreateTransactionDto {
   readonly date: number;
 
   @IsInt()
-  readonly category_id: number;
+  readonly categoryId: number;
+
+  @IsInt()
+  readonly walletId: number;
+
 }

@@ -22,48 +22,10 @@ export class TransactionService {
   }
 
   getOne(id: string): Promise<Transaction> {
-    return this.transactionRepository.findOne(id);
+    return this.transactionRepository.findOne(id, {relations: ['category']});
   }
 
   async delete(id: string): Promise<void> {
     await this.transactionRepository.delete(id);
   }
-
-  // create(transaction: TransactionModel) {
-  //   const newTransaction: TransactionModel = {
-  //     id: this.transactions[this.transactions.length - 1].id + 1,
-  //     ...transaction
-  //   };
-  //
-  //   this.transactions.push(newTransaction);
-  // }
-  //
-  // getAll(): TransactionModel[] {
-  //   return this.transactions
-  // }
-  //
-  // getOne(id: string): TransactionModel {
-  //   const idx: number = this.transactions.findIndex(
-  //     (transaction:TransactionModel) => transaction.id === Number(id)
-  //   );
-  //   return this.transactions[idx]
-  // }
-  //
-  // //not work
-  // update(id: string): TransactionModel {
-  //   const idx: number = this.transactions.findIndex(
-  //     (transaction:TransactionModel) => transaction.id === Number(id)
-  //   );
-  //   return this.transactions[idx]
-  // }
-  //
-  // delete(id: string): void {
-  //   const idx: number = this.transactions.findIndex(
-  //     (transaction:TransactionModel) => transaction.id === Number(id)
-  //   );
-  //   this.transactions = [
-  //     ...this.transactions.slice(0, idx),
-  //     ...this.transactions.slice(idx + 1)
-  //   ]
-  // }
 }
