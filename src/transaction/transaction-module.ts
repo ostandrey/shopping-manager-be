@@ -5,6 +5,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Transaction } from './entity/transaction.entity';
 import { TransactionCategory } from './entity/transaction-category.entity';
 import { TransactionCategoryType } from './entity/transaction-type.entity';
+import { TransactionCategoryController } from './controllers/transaction-category-controller';
+import { TransactionCategoryService } from './service/transaction-category-service';
 
 
 
@@ -14,7 +16,7 @@ import { TransactionCategoryType } from './entity/transaction-type.entity';
     TransactionCategory,
     TransactionCategoryType
   ])],
-  controllers: [TransactionController],
-  providers: [TransactionService],
+  controllers: [TransactionController, TransactionCategoryController],
+  providers: [TransactionService, TransactionCategoryService],
 })
 export class TransactionModule {}

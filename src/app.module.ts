@@ -8,6 +8,9 @@ import { WalletType } from './wallets/entity/wallet-type.entity';
 import { Transaction } from './transaction/entity/transaction.entity';
 import { TransactionCategory } from './transaction/entity/transaction-category.entity';
 import { TransactionCategoryType } from './transaction/entity/transaction-type.entity';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
+import { AppController } from './app.controller';
 
 
 @Module({
@@ -30,8 +33,10 @@ import { TransactionCategoryType } from './transaction/entity/transaction-type.e
       ],
       synchronize: true,
     }),
+    AuthModule,
+    UsersModule,
   ],
-  controllers: [],
+  controllers: [AppController],
   providers: [],
 })
 export class AppModule {

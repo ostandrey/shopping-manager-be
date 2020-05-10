@@ -21,7 +21,6 @@ export class WalletsController {
 
   @Post()
   async create(@Body() createWalletDto: CreateWalletDto) {
-    console.log(createWalletDto);
     await this.walletService.create(createWalletDto);
   }
 
