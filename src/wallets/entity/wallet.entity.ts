@@ -1,6 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, JoinTable, OneToMany } from 'typeorm';
 import { WalletType } from './wallet-type.entity';
 import { Transaction } from '../../transaction/entity/transaction.entity';
+import { Users } from '../../users/entity/users.entity';
 
 @Entity()
 export class Wallet {
@@ -22,5 +23,7 @@ export class Wallet {
   @Column()
   balance: number;
 
+  @ManyToOne(type => Users, user => user.wallet)
+  user: Users;
 
 }

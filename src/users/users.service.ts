@@ -46,6 +46,15 @@ export class UsersService {
   }
 
   async getOne(id: string): Promise<Users> {
-    return await this.usersRepository.findOne(id);
+    return await this.usersRepository.findOne(id, {
+      where: {id: id},
+      join: {
+        alias: "user",
+        leftJoinAndSelect: {
+          "wallet": "user.wallet",
+          "type": "wallet.type",
+        }
+      },
+    relations: ['wallet']});
   }
 }
