@@ -11,6 +11,7 @@ import { TransactionCategoryType } from './transaction/entity/transaction-type.e
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { AppController } from './app.controller';
+import { Users } from './users/entity/users.entity';
 
 
 @Module({
@@ -25,6 +26,7 @@ import { AppController } from './app.controller';
       password: '123',
       database: 'moneymanager',
       entities: [
+        Users,
         Wallet,
         WalletType,
         Transaction,
