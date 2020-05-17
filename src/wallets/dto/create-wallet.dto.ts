@@ -10,4 +10,6 @@ export class CreateWalletDto {
   @IsNumber()
   readonly balance: number;
 
+  @IsNumber()
+  readonly userId: number;
 }

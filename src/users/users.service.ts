@@ -3,6 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Users } from './entity/users.entity';
 import { Repository } from 'typeorm';
 import { Wallet } from '../wallets/entity/wallet.entity';
+import { CreateWalletDto } from '../wallets/dto/create-wallet.dto';
+import { CreateUserDto } from './dto/users.dto';
 
 export type User = any;
 
@@ -56,5 +58,9 @@ export class UsersService {
         }
       },
     relations: ['wallet']});
+  }
+
+  create(createUserDto: CreateUserDto) {
+    return this.usersRepository.insert(createUserDto);
   }
 }

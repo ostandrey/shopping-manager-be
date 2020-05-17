@@ -13,6 +13,7 @@ export class WalletsService {
   ) {}
 
   create(createWalletDto: CreateWalletDto) {
+    console.log(createWalletDto);
     return this.walletsRepository.insert(createWalletDto);
   }
 
