@@ -3,7 +3,7 @@ import { TransactionCategoryService } from '../service/transaction-category-serv
 import { TransactionCategory } from '../entity/transaction-category.entity';
 
 
-@Controller('categories')
+@Controller('transaction_categories')
 export class TransactionCategoryController{
   constructor(private transactionCategoryService: TransactionCategoryService) {}
 
