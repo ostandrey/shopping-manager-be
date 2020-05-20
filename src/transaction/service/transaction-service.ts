@@ -28,4 +28,11 @@ export class TransactionService {
   async delete(id: string): Promise<void> {
     await this.transactionRepository.delete(id);
   }
+
+  async update(id: string, updateTransactionDto: CreateTransactionDto) {
+    return await this.transactionRepository.save({
+      id: Number(id),
+      ...updateTransactionDto
+    });
+  }
 }
