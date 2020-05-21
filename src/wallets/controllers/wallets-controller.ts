@@ -1,7 +1,8 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { WalletsService } from '../service/wallets-service';
 import { CreateWalletDto } from '../dto/create-wallet.dto';
 import { Wallet } from '../entity/wallet.entity';
+import { CreateTransactionDto } from '../../transaction/dto/create-transaction.dto';
 
 
 @Controller('wallets')
@@ -30,4 +31,8 @@ export class WalletsController {
     return this.walletService.delete(id)
   }
 
+  @Put(':id')
+  update(@Param('id') id: string, @Body() updateWalletDto: CreateWalletDto) {
+    return this.walletService.update(id, updateWalletDto)
+  }
 }

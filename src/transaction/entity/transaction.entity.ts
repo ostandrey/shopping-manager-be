@@ -21,6 +21,7 @@ export class Transaction {
       category => category.transaction, {cascade: ['insert', 'update']})
   category: TransactionCategory;
 
-  @ManyToOne(type => Wallet, wallet => wallet.transaction)
+  @ManyToOne(type => Wallet, wallet => wallet.transaction,
+    {onDelete: 'CASCADE'})
   wallet: Wallet;
 }

@@ -12,13 +12,11 @@ export class UserController {
   @Get()
   async getOne(@Request() req): Promise<Users> {
     const id = req.user.id;
-    console.log(req.user);
     return this.usersService.getOne(id)
   }
 
   @Post()
   async create(@Body() createUserDto: CreateUserDto) {
-    console.log(createUserDto);
     return this.usersService.create(createUserDto)
   }
 }
