@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, JoinTable, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany } from 'typeorm';
 import { WalletType } from './wallet-type.entity';
 import { Transaction } from '../../transaction/entity/transaction.entity';
 import { Users } from '../../users/entity/users.entity';
@@ -11,7 +11,10 @@ export class Wallet {
   @Column()
   title: string;
 
-  @ManyToOne(type => WalletType, type => type.wallet)
+  @ManyToOne(
+    type => WalletType,
+    type => type.wallet,
+    {cascade: ['insert', 'update']})
   type: WalletType;
 
   @OneToMany(
