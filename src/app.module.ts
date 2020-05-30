@@ -20,11 +20,11 @@ import { Users } from './users/entity/users.entity';
     TransactionModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'ec2-54-247-169-129.eu-west-1.compute.amazonaws.com',
+      host: 'localhost',
       port: 5432,
-      username: 'iiprqbfyrbgmwy',
-      password: '2dc9f68808216af2f09d5cd61b25f2dc1ac3c04b0f5cf8118d4e85649e45ac41',
-      database: 'postgresql-clean-61622',
+      username: 'postgres',
+      password: '123',
+      database: 'moneymanager',
       entities: [
         Users,
         Wallet,

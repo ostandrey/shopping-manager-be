@@ -21,6 +21,10 @@ export class TransactionService {
     return this.transactionRepository.find({relations: ['category']});
   }
 
+  getWithParams(params): Promise<Transaction[]> {
+    return this.transactionRepository.find({where: {}})
+  }
+
   getOne(id: string): Promise<Transaction> {
     return this.transactionRepository.findOne(id, {relations: ['category']});
   }

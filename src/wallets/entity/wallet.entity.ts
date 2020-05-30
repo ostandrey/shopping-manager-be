@@ -23,10 +23,12 @@ export class Wallet {
   )
   transaction: Transaction[];
 
-  @Column()
+  @Column({ type: 'decimal', precision: 12, scale: 2})
   balance: number;
 
-  @ManyToOne(type => Users, user => user.wallet)
+  @ManyToOne(type => Users,
+      user => user.wallet,
+    {cascade: ['insert', 'update']})
   user: Users;
 
 }
